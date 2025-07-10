@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>พนักงาน (หมอนวด) - ร้านนวดเฮือนลานนา</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Prompt&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body, html {
+      margin: 0; padding: 0; min-height: 100vh;
+      font-family: 'Prompt', sans-serif;
+      background-color: #000;
+      color: #f0c75e;
+    }
+
+    nav.main-nav {
+      max-width: 480px;
+      margin: 20px auto 0;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    nav.main-nav a {
+      color: black;
+      background-color: #f0c75e;
+      padding: 10px 20px;
+      border-radius: 24px;
+      text-decoration: none;
+      font-weight: 600;
+      box-shadow: 0 4px 10px rgba(240,199,94,0.6);
+      transition: background-color 0.3s ease;
+    }
+
+    nav.main-nav a:hover {
+      background-color: #d4af37;
+    }
+
+    nav.main-nav a[aria-current="page"] {
+      background-color: #d4af37;
+    }
+
+    main.card {
+      max-width: 480px;
+      width: 90%;
+      margin: 20px auto 40px;
+      background: rgba(0, 0, 0, 0.85);
+      border: 2px solid #f0c75e;
+      border-radius: 24px;
+      padding: 30px 25px 25px 25px;
+      box-shadow: 0 8px 24px rgba(255,255,255,0.05);
+      animation: fadeInUp 1s ease forwards;
+      opacity: 0;
+      transform: translateY(30px);
+      position: relative;
+    }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* ปุ่มเปลี่ยนภาษา */
+    .language-switcher {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 20px;
+      border: none;
+      background: transparent;
+      box-shadow: none;
+      padding: 0;
+    }
+    .language-switcher button {
+      background-color: transparent;
+      border: none;
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-weight: 700;
+      cursor: pointer;
+      color: #f0c75e;
+      transition: color 0.3s ease, background-color 0.3s ease;
+    }
+    .language-switcher button:hover,
+    .language-switcher button.active {
+      background-color: #d4af37;
+      color: #000;
+    }
+
+    h1 {
+      font-weight: 700;
+      font-size: 2rem;
+      margin-bottom: 20px;
+      text-align: center;
+      color: #f0c75e;
+    }
+
+    .therapist-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 20px;
+    }
+
+    .therapist {
+      background: #111;
+      border: 1px solid #f0c75e55;
+      border-radius: 16px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(240,199,94,0.15);
+    }
+
+    .therapist img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      box-shadow: 0 2px 6px rgba(240,199,94,0.4);
+    }
+
+    .therapist-info h3 {
+      margin: 10px 0 4px;
+      color: #f0c75e;
+    }
+
+    .btn-book {
+      background: #f0c75e;
+      color: black;
+      font-weight: 700;
+      padding: 10px 20px;
+      border-radius: 40px;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 1rem;
+      transition: background 0.3s ease;
+      box-shadow: 0 4px 10px rgba(240,199,94,0.6);
+    }
+
+    .btn-book:hover {
+      background: #d4af37;
+    }
+
+    @media (max-width: 400px) {
+      nav.main-nav {
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="main-nav" aria-label="เมนูหลัก">
+    <a href="index.html" data-i18n="nav-home">หน้าแรก</a>
+    <a href="therapists.html" aria-current="page" data-i18n="nav-therapists">พนักงาน</a>
+    <a href="massage-details.html" data-i18n="nav-details">รายละเอียดการนวด</a>
+  </nav>
+
+  <main class="card" role="main">
+    <div class="language-switcher" aria-label="เปลี่ยนภาษา">
+      <button data-lang="th" class="active">ไทย</button>
+      <button data-lang="en">EN</button>
+      <button data-lang="zh">中文</button>
+    </div>
+
+    <h1 data-i18n="title">พนักงาน (หมอนวด)</h1>
+
+    <section class="therapist-list" aria-label="รายการพนักงานหมอนวด">
+      <article class="therapist">
+        <img src="staff1.jpg" alt="ภาพหมอตาล" />
+        <div class="therapist-info">
+          <h3 data-i18n="therapist-tarn">หมอตาล</h3>
+          <a href="https://www.appsheet.com/newshortcut/...&therapist=ตาล" class="btn-book" data-i18n="btn-book">จองคิวหมอคนนี้</a>
+        </div>
+      </article>
+      <article class="therapist">
+        <img src="staff2.jpg" alt="ภาพหมอนุ้ย" />
+        <div class="therapist-info">
+          <h3 data-i18n="therapist-noi">หมอนุ้ย</h3>
+          <a href="https://www.appsheet.com/newshortcut/...&therapist=นุ้ย" class="btn-book" data-i18n="btn-book">จองคิวหมอคนนี้</a>
+        </div>
+      </article>
+      <article class="therapist">
+        <img src="staff3.jpg" alt="ภาพครูนาย" />
+        <div class="therapist-info">
+          <h3 data-i18n="therapist-nai">ครูนาย</h3>
+          <a href="https://www.appsheet.com/newshortcut/...&therapist=นาย" class="btn-book" data-i18n="btn-book">จองคิวหมอคนนี้</a>
+        </div>
+      </article>
+      <article class="therapist">
+        <img src="staff4.jpg" alt="ภาพหมอฝ้าย" />
+        <div class="therapist-info">
+          <h3 data-i18n="therapist-fai">หมอนิว</h3>
+          <a href="https://www.appsheet.com/newshortcut/...&therapist=ฝ้าย" class="btn-book" data-i18n="btn-book">จองคิวหมอคนนี้</a>
+        </div>
+      </article>
+      <article class="therapist">
+        <img src="staff5.jpg" alt="ภาพหมอบีม" />
+        <div class="therapist-info">
+          <h3 data-i18n="therapist-beam">หมอน้ำ</h3>
+          <a href="https://www.appsheet.com/newshortcut/...&therapist=บีม" class="btn-book" data-i18n="btn-book">จองคิวหมอคนนี้</a>
+        </div>
+      </article>
+      <article class="therapist">
+        <img src="staff6.jpg" alt="ภาพหมอเมย์" />
+        <div class="therapist-info">
+          <h3 data-i18n="therapist-may">เฮือนล้านนา</h3>
+          <a href="https://www.appsheet.com/newshortcut/...&therapist=เมย์" class="btn-book" data-i18n="btn-book">จองคิวหมอคนนี้</a>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <script>
+    const translations = {
+      th: {
+        "nav-home": "หน้าแรก",
+        "nav-therapists": "พนักงาน",
+        "nav-details": "รายละเอียดการนวด",
+        "title": "พนักงาน (หมอนวด)",
+        "therapist-tarn": "หมอตาล",
+        "therapist-noi": "หมอนุ้ย",
+        "therapist-nai": "ครูนาย",
+        "therapist-fai": "หมอนิว",
+        "therapist-beam": "หมอน้ำ",
+        "therapist-may": "เฮือนล้านนา",
+        "btn-book": "จองคิวหมอคนนี้"
+      },
+      en: {
+        "nav-home": "Home",
+        "nav-therapists": "Therapists",
+        "nav-details": "Massage Details",
+        "title": "Therapists",
+        "therapist-tarn": "Dr. Tarn",
+        "therapist-noi": "Dr. Noi",
+        "therapist-nai": "Teacher Nai",
+        "therapist-fai": "Dr. New",
+        "therapist-beam": "Dr. Nam",
+        "therapist-may": "Huan Lanna",
+        "btn-book": "Book This Therapist"
+      },
+      zh: {
+        "nav-home": "首页",
+        "nav-therapists": "按摩师",
+        "nav-details": "按摩详情",
+        "title": "按摩师",
+        "therapist-tarn": "塔医生",
+        "therapist-noi": "诺医生",
+        "therapist-nai": "奈老师",
+        "therapist-fai": "新医生",
+        "therapist-beam": "南医生",
+        "therapist-may": "兰纳之家",
+        "btn-book": "预约此按摩师"
+      }
+    };
+
+    function setLanguage(lang) {
+      document.documentElement.lang = lang;
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (translations[lang] && translations[lang][key]) {
+          el.textContent = translations[lang][key];
+        }
+      });
+      // update active button style
+      document.querySelectorAll('.language-switcher button').forEach(btn => {
+        btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+      });
+    }
+
+    document.querySelectorAll('.language-switcher button').forEach(btn => {
+      btn.addEventListener('click', () => {
+        setLanguage(btn.getAttribute('data-lang'));
+      });
+    });
+
+    window.addEventListener('load', () => {
+      setLanguage('th');
+      const mainCard = document.querySelector('main.card');
+      mainCard.style.opacity = '1';
+      mainCard.style.transform = 'translateY(0)';
+    });
+  </script>
+</body>
+</html>

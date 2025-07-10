@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ร้านนวดเฮือนลานนา</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Prompt&display=swap" rel="stylesheet" />
+  <link rel="icon" href="favicon.png" type="image/png" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: 'Prompt', sans-serif;
+      background-color: #000;
+      color: #f0c75e;
+      transition: font-size 0.3s ease;
+      font-size: 16px; /* เริ่มต้นขนาดฟอนต์ */
+    }
+    main.card {
+      max-width: 420px;
+      width: 90%;
+      margin: 20px auto;
+      background: rgba(0, 0, 0, 0.85);
+      border-radius: 24px;
+      padding: 30px 25px;
+      border: 2px solid #f0c75e;
+      box-shadow: 0 8px 24px rgba(255,255,255,0.1);
+      text-align: center;
+    }
+    .logo {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin: 0 auto 25px;
+      border: 2px solid #f0c75e;
+      box-shadow: 0 0 12px #f0c75e88;
+      loading: lazy;
+    }
+    h1 {
+      font-weight: 700;
+      font-size: 2rem;
+      margin-bottom: 12px;
+      color: #f0c75e;
+    }
+    p.subtitle {
+      font-size: 1rem;
+      margin-bottom: 30px;
+      color: #f7eac3;
+      line-height: 1.4;
+    }
+    a.btn {
+      display: block;
+      margin: 10px auto;
+      background: #f0c75e;
+      color: #000;
+      font-weight: 700;
+      font-size: 1.1rem;
+      padding: 14px;
+      border-radius: 40px;
+      text-decoration: none;
+      box-shadow: 0 6px 14px rgba(240,199,94,0.5);
+      transition: background 0.3s ease, box-shadow 0.3s ease;
+    }
+    a.btn:hover {
+      background: #d4af37;
+      box-shadow: 0 8px 20px rgba(212,175,55,0.8);
+    }
+    .contact-menu {
+      margin-top: 35px;
+      display: flex;
+      justify-content: center;
+      gap: 28px;
+    }
+    .contact-menu a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #f0c75e;
+      color: black;
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      font-size: 24px;
+      text-decoration: none;
+      box-shadow: 0 4px 10px rgba(240,199,94,0.7);
+      transition: background 0.3s ease;
+    }
+    .contact-menu a:hover {
+      background: #d4af37;
+    }
+    .map-container {
+      margin-top: 40px;
+      width: 100%;
+      height: 220px;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+    }
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+    .address {
+      margin-top: 20px;
+      font-size: 0.95rem;
+      color: #f7eac3;
+    }
+    .lang-switcher {
+      margin-top: 20px;
+    }
+    .lang-switcher button {
+      background: transparent;
+      border: 1px solid #f0c75e;
+      color: #f0c75e;
+      padding: 6px 12px;
+      margin: 0 6px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+    .lang-switcher button:hover {
+      background: #f0c75e;
+      color: #000;
+    }
+
+    /* ปุ่มลอยโทรด่วน */
+    .floating-call {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #f0c75e;
+      color: black;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      box-shadow: 0 4px 12px rgba(240,199,94,0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      z-index: 9999;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      text-decoration: none;
+    }
+    .floating-call:hover {
+      background: #d4af37;
+    }
+
+    /* ปุ่มปรับขนาดฟอนต์ */
+    .font-size-controls {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+    }
+    .font-size-controls button {
+      background: #f0c75e;
+      border: none;
+      color: black;
+      font-weight: 700;
+      padding: 6px 14px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background 0.3s ease;
+    }
+    .font-size-controls button:hover {
+      background: #d4af37;
+    }
+
+    @media (max-width: 400px) {
+      main.card {
+        max-width: 95%;
+        padding: 20px 15px;
+      }
+      a.btn {
+        font-size: 1rem;
+        padding: 12px;
+      }
+      .contact-menu a {
+        width: 44px;
+        height: 44px;
+        font-size: 20px;
+      }
+      .floating-call {
+        width: 50px;
+        height: 50px;
+        font-size: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <main class="card">
+    <img src="logo.png" alt="โลโก้ร้านเฮือนลานนา" class="logo" loading="lazy" />
+    <h1 id="title">ร้านนวดเฮือนลานนา</h1>
+    <p class="subtitle" id="subtitle">จองคิวออนไลน์ง่าย ๆ สะดวก รวดเร็ว และปลอดภัย<br>พร้อมดูแลคุณด้วยใจ</p>
+
+    <a href="therapists.html" class="btn" id="btn-therapist">พนักงาน (หมอนวด)</a>
+    <a href="massage-details.html" class="btn" id="btn-massage">รายการนวด</a>
+    <a href="https://www.appsheet.com/newshortcut/2f721cb1-6919-4c1e-9296-430f16be47e1" class="btn" target="_blank" id="btn-book">จองคิว</a>
+
+    <nav class="contact-menu" aria-label="เมนูติดต่อ">
+      <a href="tel:+66919622999" title="โทรหาเรา"><i class="fas fa-phone"></i></a>
+      <a href="https://lin.ee/izpBD5r" title="LINE Official" target="_blank"><i class="fab fa-line"></i></a>
+      <a href="https://www.facebook.com/share/18VRmDu1vS/?mibextid=wwXIfr" title="Facebook Page" target="_blank"><i class="fab fa-facebook-f"></i></a>
+    </nav>
+
+    <div class="lang-switcher">
+      <button onclick="switchLang('th')">ไทย</button>
+      <button onclick="switchLang('en')">English</button>
+      <button onclick="switchLang('zh')">中文</button>
+    </div>
+
+    <div class="font-size-controls" aria-label="ปรับขนาดฟอนต์">
+      <button onclick="adjustFontSize(1)">A+</button>
+      <button onclick="adjustFontSize(-1)">A-</button>
+      <button onclick="resetFontSize()">Reset</button>
+    </div>
+
+    <div class="address" id="address">
+      168/2 หมู่ที่ 10 ต.โป่งผา อ.แม่สาย จ.เชียงราย 57130
+    </div>
+
+    <div class="map-container">
+      <iframe
+        src="https://www.google.com/maps?q=20.36781912601076,99.88924398221566&z=17&output=embed"
+        allowfullscreen
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+  </main>
+
+  <a href="tel:+66919622999" class="floating-call" title="โทรด่วน"><i class="fas fa-phone"></i></a>
+
+  <script>
+    const content = {
+      th: {
+        title: "ร้านนวดเฮือนลานนา",
+        subtitle: "จองคิวออนไลน์ง่าย ๆ สะดวก รวดเร็ว และปลอดภัย<br>พร้อมดูแลคุณด้วยใจ",
+        btnTherapist: "พนักงาน (หมอนวด)",
+        btnMassage: "รายการนวด",
+        btnBook: "จองคิว",
+        address: "168/2 หมู่ที่ 10 ต.โป่งผา อ.แม่สาย จ.เชียงราย 57130"
+      },
+      en: {
+        title: "Huen Lanna Massage",
+        subtitle: "Book online easily, quickly, and securely.<br>We care for you with heart.",
+        btnTherapist: "Therapists",
+        btnMassage: "Massage Services",
+        btnBook: "Book Now",
+        address: "168/2 Moo 10, Pong Pha, Mae Sai, Chiang Rai 57130"
+      },
+      zh: {
+        title: "兰纳传统按摩店",
+        subtitle: "线上预约，方便快速又安全<br>我们用心为您服务",
+        btnTherapist: "按摩师",
+        btnMassage: "按摩项目",
+        btnBook: "立即预约",
+        address: "57130 泰国清莱府湄赛县蓬帕区10村168/2号"
+      }
+    };
+
+    function switchLang(lang) {
+      document.getElementById("title").innerHTML = content[lang].title;
+      document.getElementById("subtitle").innerHTML = content[lang].subtitle;
+      document.getElementById("btn-therapist").innerText = content[lang].btnTherapist;
+      document.getElementById("btn-massage").innerText = content[lang].btnMassage;
+      document.getElementById("btn-book").innerText = content[lang].btnBook;
+      document.getElementById("address").innerText = content[lang].address;
+    }
+
+    // ฟังก์ชันปรับขนาดฟอนต์
+    function adjustFontSize(change) {
+      const body = document.body;
+      const style = window.getComputedStyle(body);
+      const currentSize = parseFloat(style.fontSize);
+      let newSize = currentSize + change;
+
+      if (newSize < 12) newSize = 12; // จำกัดไม่ให้เล็กเกินไป
+      if (newSize > 24) newSize = 24; // จำกัดไม่ให้ใหญ่เกินไป
+
+      body.style.fontSize = newSize + "px";
+    }
+
+    function resetFontSize() {
+      document.body.style.fontSize = "16px";
+    }
+  </script>
+
+</body>
+</html>

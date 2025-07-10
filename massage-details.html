@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>รายละเอียดการนวด - ร้านนวดเฮือนลานนา</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Prompt&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <style>
+    * { box-sizing: border-box; }
+    body, html {
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      font-family: 'Prompt', sans-serif;
+      background-color: #000;
+      color: #f0c75e;
+    }
+    nav.main-nav {
+      max-width: 420px;
+      margin: 20px auto 0;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+    nav.main-nav a {
+      color: #000;
+      background-color: #f0c75e;
+      padding: 10px 20px;
+      border-radius: 24px;
+      text-decoration: none;
+      font-weight: 600;
+      box-shadow: 0 4px 10px rgba(240,199,94,0.5);
+      transition: background-color 0.3s ease;
+    }
+    nav.main-nav a:hover {
+      background-color: #d4af37;
+    }
+    nav.main-nav a[aria-current="page"] {
+      background-color: #d4af37;
+    }
+    main.card {
+      max-width: 420px;
+      width: 90%;
+      margin: 20px auto 40px;
+      background: rgba(0, 0, 0, 0.85);
+      border-radius: 24px;
+      padding: 30px 25px 25px 25px;
+      border: 2px solid #f0c75e;
+      box-shadow: 0 8px 24px rgba(255,255,255,0.1);
+      animation: fadeInUp 1s ease forwards;
+      opacity: 0;
+      transform: translateY(30px);
+      position: relative;
+    }
+    @keyframes fadeInUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+    /* ปรับปุ่มเปลี่ยนภาษาให้อยู่ตรงกลาง และลบกรอบ */
+    .language-switcher {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 20px;
+      border: none;
+      background: transparent;
+      box-shadow: none;
+      padding: 0;
+    }
+    .language-switcher button {
+      background-color: transparent;
+      border: none;
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-weight: 700;
+      cursor: pointer;
+      color: #f0c75e;
+      transition: color 0.3s ease, background-color 0.3s ease;
+    }
+    .language-switcher button:hover,
+    .language-switcher button.active {
+      background-color: #d4af37;
+      color: #000;
+    }
+    h1 {
+      font-weight: 700;
+      font-size: 2rem;
+      margin-bottom: 20px;
+      color: #f0c75e;
+      text-align: center;
+    }
+    .massage-list {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .massage-item {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 16px;
+      padding: 15px;
+      box-shadow: 0 2px 8px rgba(240,199,94,0.2);
+      display: flex;
+      gap: 15px;
+      align-items: center;
+    }
+    .massage-item img {
+      width: 100px;
+      height: 100px;
+      border-radius: 16px;
+      object-fit: cover;
+      box-shadow: 0 2px 8px rgba(240,199,94,0.3);
+      flex-shrink: 0;
+    }
+    .massage-info {
+      flex: 1;
+    }
+    .massage-info h3 {
+      margin: 0 0 8px;
+      color: #f0c75e;
+      font-size: 1.2rem;
+    }
+    .massage-info p {
+      margin: 0 0 8px;
+      color: #f7eac3;
+      font-size: 1rem;
+      line-height: 1.4;
+    }
+    .price {
+      font-weight: 700;
+      color: #ffd700;
+      margin-bottom: 10px;
+    }
+    .btn-book {
+      display: inline-block;
+      background: #f0c75e;
+      color: #000;
+      font-weight: 700;
+      padding: 10px 28px;
+      border-radius: 40px;
+      text-decoration: none;
+      box-shadow: 0 4px 12px rgba(240,199,94,0.5);
+      transition: background 0.3s ease, box-shadow 0.3s ease;
+      font-size: 1rem;
+    }
+    .btn-book:hover {
+      background: #d4af37;
+      box-shadow: 0 6px 18px rgba(212,175,55,0.8);
+    }
+    @media (max-width: 400px) {
+      main.card {
+        padding: 20px 15px 15px 15px;
+      }
+      .language-switcher {
+        justify-content: center;
+        margin-bottom: 15px;
+      }
+      .massage-item {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .massage-item img {
+        width: 100%;
+        height: auto;
+      }
+      .btn-book {
+        width: 100%;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="main-nav" aria-label="เมนูหลัก">
+    <a href="index.html" data-i18n="nav-home">หน้าแรก</a>
+    <a href="therapists.html" data-i18n="nav-therapists">พนักงาน</a>
+    <a href="massage-details.html" aria-current="page" data-i18n="nav-details">รายละเอียดการนวด</a>
+  </nav>
+
+  <main class="card" role="main">
+    <div class="language-switcher" aria-label="เปลี่ยนภาษา">
+      <button data-lang="th" class="active">ไทย</button>
+      <button data-lang="en">EN</button>
+      <button data-lang="zh">中文</button>
+    </div>
+
+    <h1 data-i18n="title">รายละเอียดการนวด</h1>
+    <section class="massage-list" aria-label="รายการบริการนวด">
+
+      <article class="massage-item">
+        <img src="thai-massage.jpg" alt="นวดไทย" loading="lazy" />
+        <div class="massage-info">
+          <h3 data-i18n="massage-thai-title">นวดไทย</h3>
+          <p class="price" data-i18n="massage-thai-price">120 นาที / 400 บาท</p>
+          <p data-i18n="massage-thai-desc">นวดไทยแบบดั้งเดิม ใช้แรงกดและยืดกล้ามเนื้อ เพื่อผ่อนคลายและเพิ่มความยืดหยุ่นของร่างกาย</p>
+          <a href="https://www.appsheet.com/newshortcut/...&service=นวดไทย" class="btn-book" data-i18n="btn-book">จองคิว</a>
+        </div>
+      </article>
+
+      <article class="massage-item">
+        <img src="foot-massage.jpg" alt="นวดเท้า" loading="lazy" />
+        <div class="massage-info">
+          <h3 data-i18n="massage-foot-title">นวดเท้า</h3>
+          <p class="price" data-i18n="massage-foot-price">120 นาที / 450 บาท</p>
+          <p data-i18n="massage-foot-desc">นวดเท้าเพื่อผ่อนคลายความเมื่อยล้าและกระตุ้นจุดสะท้อนเท้าเพื่อสุขภาพที่ดี</p>
+          <a href="https://www.appsheet.com/newshortcut/...&service=นวดเท้า" class="btn-book" data-i18n="btn-book">จองคิว</a>
+        </div>
+      </article>
+
+      <article class="massage-item">
+        <img src="neck-shoulder-massage.jpg" alt="นวดคอ บ่า ไหล่" loading="lazy" />
+        <div class="massage-info">
+          <h3 data-i18n="massage-neck-title">นวดคอ บ่า ไหล่</h3>
+          <p class="price" data-i18n="massage-neck-price">120 นาที / 550 บาท</p>
+          <p data-i18n="massage-neck-desc">นวดเพื่อคลายกล้ามเนื้อคอ บ่า และไหล่ ช่วยบรรเทาอาการตึงเครียดและอาการปวด</p>
+          <a href="https://www.appsheet.com/newshortcut/...&service=นวดคอ_บ่า_ไหล่" class="btn-book" data-i18n="btn-book">จองคิว</a>
+        </div>
+      </article>
+
+      <article class="massage-item">
+        <img src="oil-massage.jpg" alt="นวดน้ำมัน" loading="lazy" />
+        <div class="massage-info">
+          <h3 data-i18n="massage-oil-title">นวดน้ำมัน</h3>
+          <p class="price" data-i18n="massage-oil-price">120 นาที / 700 บาท</p>
+          <p data-i18n="massage-oil-desc">นวดน้ำมันเพื่อผ่อนคลายกล้ามเนื้อและเพิ่มการไหลเวียนของเลือด พร้อมกลิ่นหอมจากน้ำมันธรรมชาติ</p>
+          <a href="https://www.appsheet.com/newshortcut/...&service=นวดน้ำมัน" class="btn-book" data-i18n="btn-book">จองคิว</a>
+        </div>
+      </article>
+
+      <article class="massage-item">
+        <img src="scrub.jpg" alt="ขัดผิว" loading="lazy" />
+        <div class="massage-info">
+          <h3 data-i18n="massage-scrub-title">ขัดผิว</h3>
+          <p class="price" data-i18n="massage-scrub-price">60 นาที / 700 บาท</p>
+          <p data-i18n="massage-scrub-desc">บริการขัดผิวเพื่อผิวเนียนนุ่ม กระจ่างใส และสดชื่น</p>
+          <a href="https://www.appsheet.com/newshortcut/...&service=ขัดผิว" class="btn-book" data-i18n="btn-book">จองคิว</a>
+        </div>
+      </article>
+
+      <article class="massage-item">
+        <img src="relax-stretch.jpg" alt="นวดคลายเส้น" loading="lazy" />
+        <div class="massage-info">
+          <h3 data-i18n="massage-relax-title">นวดคลายเส้น</h3>
+          <p class="price" data-i18n="massage-relax-price">120 นาที / 600 บาท</p>
+          <p data-i18n="massage-relax-desc">นวดคลายเส้นเพื่อผ่อนคลายกล้ามเนื้อและลดความตึงเครียดในร่างกาย</p>
+          <a href="https://www.appsheet.com/newshortcut/...&service=นวดคลายเส้น" class="btn-book" data-i18n="btn-book">จองคิว</a>
+        </div>
+      </article>
+
+    </section>
+  </main>
+
+  <script>
+    const translations = {
+      th: {
+        "nav-home": "หน้าแรก",
+        "nav-therapists": "พนักงาน",
+        "nav-details": "รายละเอียดการนวด",
+        "title": "รายละเอียดการนวด",
+        "massage-thai-title": "นวดไทย",
+        "massage-thai-price": "120 นาที / 400 บาท",
+        "massage-thai-desc": "นวดไทยแบบดั้งเดิม ใช้แรงกดและยืดกล้ามเนื้อ เพื่อผ่อนคลายและเพิ่มความยืดหยุ่นของร่างกาย",
+        "massage-foot-title": "นวดเท้า",
+        "massage-foot-price": "120 นาที / 450 บาท",
+        "massage-foot-desc": "นวดเท้าเพื่อผ่อนคลายความเมื่อยล้าและกระตุ้นจุดสะท้อนเท้าเพื่อสุขภาพที่ดี",
+        "massage-neck-title": "นวดคอ บ่า ไหล่",
+        "massage-neck-price": "120 นาที / 550 บาท",
+        "massage-neck-desc": "นวดเพื่อคลายกล้ามเนื้อคอ บ่า และไหล่ ช่วยบรรเทาอาการตึงเครียดและอาการปวด",
+        "massage-oil-title": "นวดน้ำมัน",
+        "massage-oil-price": "120 นาที / 700 บาท",
+        "massage-oil-desc": "นวดน้ำมันเพื่อผ่อนคลายกล้ามเนื้อและเพิ่มการไหลเวียนของเลือด พร้อมกลิ่นหอมจากน้ำมันธรรมชาติ",
+        "massage-scrub-title": "ขัดผิว",
+        "massage-scrub-price": "60 นาที / 700 บาท",
+        "massage-scrub-desc": "บริการขัดผิวเพื่อผิวเนียนนุ่ม กระจ่างใส และสดชื่น",
+        "massage-relax-title": "นวดคลายเส้น",
+        "massage-relax-price": "120 นาที / 600 บาท",
+        "massage-relax-desc": "นวดคลายเส้นเพื่อผ่อนคลายกล้ามเนื้อและลดความตึงเครียดในร่างกาย",
+        "btn-book": "จองคิว"
+      },
+      en: {
+        "nav-home": "Home",
+        "nav-therapists": "Therapists",
+        "nav-details": "Massage Details",
+        "title": "Massage Details",
+        "massage-thai-title": "Thai Massage",
+        "massage-thai-price": "120 minutes / 400 THB",
+        "massage-thai-desc": "Traditional Thai massage using pressure and stretching to relax and increase body flexibility.",
+        "massage-foot-title": "Foot Massage",
+        "massage-foot-price": "120 minutes / 450 THB",
+        "massage-foot-desc": "Foot massage to relieve fatigue and stimulate reflexology points for good health.",
+        "massage-neck-title": "Neck, Shoulder Massage",
+        "massage-neck-price": "120 minutes / 550 THB",
+        "massage-neck-desc": "Massage to relieve neck, shoulder muscle tension and pain.",
+        "massage-oil-title": "Oil Massage",
+        "massage-oil-price": "120 minutes / 700 THB",
+        "massage-oil-desc": "Oil massage to relax muscles and improve blood circulation with natural scented oils.",
+        "massage-scrub-title": "Scrub",
+        "massage-scrub-price": "60 minutes / 700 THB",
+        "massage-scrub-desc": "Scrubbing service for smooth, bright, and refreshed skin.",
+        "massage-relax-title": "Relax & Stretch Massage",
+        "massage-relax-price": "120 minutes / 600 THB",
+        "massage-relax-desc": "Massage to relax muscles and reduce body tension.",
+        "btn-book": "Book Now"
+      },
+      zh: {
+        "nav-home": "首页",
+        "nav-therapists": "按摩师",
+        "nav-details": "按摩详情",
+        "title": "按摩详情",
+        "massage-thai-title": "泰式按摩",
+        "massage-thai-price": "120分钟 / 400 泰铢",
+        "massage-thai-desc": "传统泰式按摩，使用压力和拉伸放松并增加身体柔韧性。",
+        "massage-foot-title": "足部按摩",
+        "massage-foot-price": "120分钟 / 450 泰铢",
+        "massage-foot-desc": "足部按摩以缓解疲劳并刺激反射区，促进健康。",
+        "massage-neck-title": "颈部和肩部按摩",
+        "massage-neck-price": "120分钟 / 550 泰铢",
+        "massage-neck-desc": "按摩以缓解颈部和肩部肌肉紧张和疼痛。",
+        "massage-oil-title": "精油按摩",
+        "massage-oil-price": "120分钟 / 700 泰铢",
+        "massage-oil-desc": "精油按摩以放松肌肉并促进血液循环，带有天然香精油的香气。",
+        "massage-scrub-title": "磨砂",
+        "massage-scrub-price": "60分钟 / 700 泰铢",
+        "massage-scrub-desc": "磨砂服务，使皮肤光滑、明亮和清爽。",
+        "massage-relax-title": "放松拉伸按摩",
+        "massage-relax-price": "120分钟 / 600 泰铢",
+        "massage-relax-desc": "按摩以放松肌肉并减少身体紧张。",
+        "btn-book": "预约"
+      }
+    };
+
+    function setLanguage(lang) {
+      document.documentElement.lang = lang;
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (translations[lang] && translations[lang][key]) {
+          el.textContent = translations[lang][key];
+        }
+      });
+      // update active button style
+      document.querySelectorAll('.language-switcher button').forEach(btn => {
+        btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+      });
+    }
+
+    document.querySelectorAll('.language-switcher button').forEach(btn => {
+      btn.addEventListener('click', () => {
+        setLanguage(btn.getAttribute('data-lang'));
+      });
+    });
+
+    // เปิดหน้าแรกเป็นภาษาไทย และแสดง main.card
+    window.addEventListener('load', () => {
+      setLanguage('th');
+      const mainCard = document.querySelector('main.card');
+      mainCard.style.opacity = '1';
+      mainCard.style.transform = 'translateY(0)';
+    });
+  </script>
+</body>
+</html>
