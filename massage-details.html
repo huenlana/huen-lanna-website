@@ -53,37 +53,42 @@
       animation: fadeInUp 1s ease forwards;
       opacity: 0;
       transform: translateY(30px);
-      position: relative;
+      position: relative; /* เพื่อให้ language-switcher position:absolute อ้างอิง */
     }
     @keyframes fadeInUp {
       to { opacity: 1; transform: translateY(0); }
     }
-    /* ปรับปุ่มเปลี่ยนภาษาให้อยู่ตรงกลาง และลบกรอบ */
+
+    /* ปุ่มเปลี่ยนภาษา ย้ายมุมขวาบน */
     .language-switcher {
+      position: absolute;
+      top: 20px;
+      right: 25px;
       display: flex;
-      justify-content: center;
       gap: 10px;
-      margin-bottom: 20px;
       border: none;
       background: transparent;
       box-shadow: none;
       padding: 0;
     }
     .language-switcher button {
-      background-color: transparent;
+      background-color: #f0c75e;
       border: none;
-      padding: 6px 16px;
+      padding: 6px 14px;
       border-radius: 20px;
       font-weight: 700;
       cursor: pointer;
-      color: #f0c75e;
-      transition: color 0.3s ease, background-color 0.3s ease;
+      color: #000;
+      box-shadow: 0 2px 6px rgba(240,199,94,0.7);
+      transition: background-color 0.3s ease, color 0.3s ease;
     }
     .language-switcher button:hover,
     .language-switcher button.active {
       background-color: #d4af37;
       color: #000;
+      box-shadow: 0 4px 12px rgba(212,175,55,0.9);
     }
+
     h1 {
       font-weight: 700;
       font-size: 2rem;
@@ -148,13 +153,20 @@
       background: #d4af37;
       box-shadow: 0 6px 18px rgba(212,175,55,0.8);
     }
+
+    /* Responsive */
     @media (max-width: 400px) {
       main.card {
         padding: 20px 15px 15px 15px;
       }
       .language-switcher {
-        justify-content: center;
+        position: static;
+        justify-content: flex-end;
         margin-bottom: 15px;
+      }
+      .language-switcher button {
+        padding: 6px 12px;
+        font-size: 0.85rem;
       }
       .massage-item {
         flex-direction: column;
@@ -194,7 +206,7 @@
           <h3 data-i18n="massage-thai-title">นวดไทย</h3>
           <p class="price" data-i18n="massage-thai-price">120 นาที / 400 บาท</p>
           <p data-i18n="massage-thai-desc">นวดไทยแบบดั้งเดิม ใช้แรงกดและยืดกล้ามเนื้อ เพื่อผ่อนคลายและเพิ่มความยืดหยุ่นของร่างกาย</p>
-          <a href="https://www.appsheet.com/newshortcut/...&service=นวดไทย" class="btn-book" data-i18n="btn-book">จองคิว</a>
+          <a href="https://www.appsheet.com/start/2f721cb1-6919-4c1e-9296-430f16be47e1?service=นวดไทย" class="btn-book" data-i18n="btn-book">จองคิว</a>
         </div>
       </article>
 
@@ -204,7 +216,7 @@
           <h3 data-i18n="massage-foot-title">นวดเท้า</h3>
           <p class="price" data-i18n="massage-foot-price">120 นาที / 450 บาท</p>
           <p data-i18n="massage-foot-desc">นวดเท้าเพื่อผ่อนคลายความเมื่อยล้าและกระตุ้นจุดสะท้อนเท้าเพื่อสุขภาพที่ดี</p>
-          <a href="https://www.appsheet.com/newshortcut/...&service=นวดเท้า" class="btn-book" data-i18n="btn-book">จองคิว</a>
+          <a href="https://www.appsheet.com/start/2f721cb1-6919-4c1e-9296-430f16be47e1?service=นวดเท้า" class="btn-book" data-i18n="btn-book">จองคิว</a>
         </div>
       </article>
 
@@ -214,7 +226,7 @@
           <h3 data-i18n="massage-neck-title">นวดคอ บ่า ไหล่</h3>
           <p class="price" data-i18n="massage-neck-price">120 นาที / 550 บาท</p>
           <p data-i18n="massage-neck-desc">นวดเพื่อคลายกล้ามเนื้อคอ บ่า และไหล่ ช่วยบรรเทาอาการตึงเครียดและอาการปวด</p>
-          <a href="https://www.appsheet.com/newshortcut/...&service=นวดคอ_บ่า_ไหล่" class="btn-book" data-i18n="btn-book">จองคิว</a>
+          <a href="https://www.appsheet.com/start/2f721cb1-6919-4c1e-9296-430f16be47e1?service=นวดคอ_บ่า_ไหล่" class="btn-book" data-i18n="btn-book">จองคิว</a>
         </div>
       </article>
 
@@ -224,7 +236,7 @@
           <h3 data-i18n="massage-oil-title">นวดน้ำมัน</h3>
           <p class="price" data-i18n="massage-oil-price">120 นาที / 700 บาท</p>
           <p data-i18n="massage-oil-desc">นวดน้ำมันเพื่อผ่อนคลายกล้ามเนื้อและเพิ่มการไหลเวียนของเลือด พร้อมกลิ่นหอมจากน้ำมันธรรมชาติ</p>
-          <a href="https://www.appsheet.com/newshortcut/...&service=นวดน้ำมัน" class="btn-book" data-i18n="btn-book">จองคิว</a>
+          <a href="https://www.appsheet.com/start/2f721cb1-6919-4c1e-9296-430f16be47e1?service=นวดน้ำมัน" class="btn-book" data-i18n="btn-book">จองคิว</a>
         </div>
       </article>
 
@@ -234,7 +246,7 @@
           <h3 data-i18n="massage-scrub-title">ขัดผิว</h3>
           <p class="price" data-i18n="massage-scrub-price">60 นาที / 700 บาท</p>
           <p data-i18n="massage-scrub-desc">บริการขัดผิวเพื่อผิวเนียนนุ่ม กระจ่างใส และสดชื่น</p>
-          <a href="https://www.appsheet.com/newshortcut/...&service=ขัดผิว" class="btn-book" data-i18n="btn-book">จองคิว</a>
+          <a href="https://www.appsheet.com/start/2f721cb1-6919-4c1e-9296-430f16be47e1?service=ขัดผิว" class="btn-book" data-i18n="btn-book">จองคิว</a>
         </div>
       </article>
 
@@ -244,7 +256,7 @@
           <h3 data-i18n="massage-relax-title">นวดคลายเส้น</h3>
           <p class="price" data-i18n="massage-relax-price">120 นาที / 600 บาท</p>
           <p data-i18n="massage-relax-desc">นวดคลายเส้นเพื่อผ่อนคลายกล้ามเนื้อและลดความตึงเครียดในร่างกาย</p>
-          <a href="https://www.appsheet.com/newshortcut/...&service=นวดคลายเส้น" class="btn-book" data-i18n="btn-book">จองคิว</a>
+          <a href="https://www.appsheet.com/start/2f721cb1-6919-4c1e-9296-430f16be47e1?service=นวดคลายเส้น" class="btn-book" data-i18n="btn-book">จองคิว</a>
         </div>
       </article>
 

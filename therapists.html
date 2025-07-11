@@ -58,7 +58,7 @@
       animation: fadeInUp 1s ease forwards;
       opacity: 0;
       transform: translateY(30px);
-      position: relative;
+      position: relative; /* เพื่อให้ .language-switcher ที่ absolute อยู่ภายในนี้ */
     }
 
     @keyframes fadeInUp {
@@ -68,31 +68,36 @@
       }
     }
 
-    /* ปุ่มเปลี่ยนภาษา */
+    /* ปุ่มเปลี่ยนภาษา (ย้ายมุมขวาบน) */
     .language-switcher {
+      position: absolute;
+      top: 20px;
+      right: 25px;
       display: flex;
-      justify-content: center;
       gap: 10px;
-      margin-bottom: 20px;
       border: none;
       background: transparent;
       box-shadow: none;
       padding: 0;
+      margin-bottom: 0;
+      z-index: 10;
     }
     .language-switcher button {
-      background-color: transparent;
+      background-color: #f0c75e;
       border: none;
       padding: 6px 16px;
       border-radius: 20px;
       font-weight: 700;
       cursor: pointer;
-      color: #f0c75e;
-      transition: color 0.3s ease, background-color 0.3s ease;
+      color: #000;
+      box-shadow: 0 2px 8px rgba(240,199,94,0.8);
+      transition: color 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
     }
     .language-switcher button:hover,
     .language-switcher button.active {
       background-color: #d4af37;
       color: #000;
+      box-shadow: 0 4px 14px rgba(212,175,55,1);
     }
 
     h1 {
@@ -105,8 +110,14 @@
 
     .therapist-list {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      grid-template-columns: repeat(2, 1fr);
       gap: 20px;
+    }
+
+    @media (max-width: 480px) {
+      .therapist-list {
+        grid-template-columns: 1fr;
+      }
     }
 
     .therapist {
@@ -177,42 +188,42 @@
         <img src="staff1.jpg" alt="ภาพหมอตาล" />
         <div class="therapist-info">
           <h3 data-i18n="therapist-tarn">หมอตาล</h3>
-          <a href="https://www.appsheet.com/newshortcut/...&therapist=ตาล" class="btn-book" data-i18n="btn-book">จองคิวหมอคนนี้</a>
+          <a href="https://www.appsheet.com/start/2f721cb1-6919-4c1e-9296-430f16be47e1" class="btn-book" data-i18n="btn-book" target="_blank" rel="noopener noreferrer">จองคิวหมอคนนี้</a>
         </div>
       </article>
       <article class="therapist">
         <img src="staff2.jpg" alt="ภาพหมอนุ้ย" />
         <div class="therapist-info">
           <h3 data-i18n="therapist-noi">หมอนุ้ย</h3>
-          <a href="https://www.appsheet.com/newshortcut/...&therapist=นุ้ย" class="btn-book" data-i18n="btn-book">จองคิวหมอคนนี้</a>
+          <a href="https://www.appsheet.com/start/2f721cb1-6919-4c1e-9296-430f16be47e1" class="btn-book" data-i18n="btn-book" target="_blank" rel="noopener noreferrer">จองคิวหมอคนนี้</a>
         </div>
       </article>
       <article class="therapist">
         <img src="staff3.jpg" alt="ภาพครูนาย" />
         <div class="therapist-info">
           <h3 data-i18n="therapist-nai">ครูนาย</h3>
-          <a href="https://www.appsheet.com/newshortcut/...&therapist=นาย" class="btn-book" data-i18n="btn-book">จองคิวหมอคนนี้</a>
+          <a href="https://www.appsheet.com/start/2f721cb1-6919-4c1e-9296-430f16be47e1" class="btn-book" data-i18n="btn-book" target="_blank" rel="noopener noreferrer">จองคิวหมอคนนี้</a>
         </div>
       </article>
       <article class="therapist">
         <img src="staff4.jpg" alt="ภาพหมอฝ้าย" />
         <div class="therapist-info">
-          <h3 data-i18n="therapist-fai">หมอนิว</h3>
-          <a href="https://www.appsheet.com/newshortcut/...&therapist=ฝ้าย" class="btn-book" data-i18n="btn-book">จองคิวหมอคนนี้</a>
+          <h3 data-i18n="therapist-fai">หมอฝ้าย</h3>
+          <a href="https://www.appsheet.com/start/2f721cb1-6919-4c1e-9296-430f16be47e1" class="btn-book" data-i18n="btn-book" target="_blank" rel="noopener noreferrer">จองคิวหมอคนนี้</a>
         </div>
       </article>
       <article class="therapist">
         <img src="staff5.jpg" alt="ภาพหมอบีม" />
         <div class="therapist-info">
-          <h3 data-i18n="therapist-beam">หมอน้ำ</h3>
-          <a href="https://www.appsheet.com/newshortcut/...&therapist=บีม" class="btn-book" data-i18n="btn-book">จองคิวหมอคนนี้</a>
+          <h3 data-i18n="therapist-beam">หมอบีม</h3>
+          <a href="https://www.appsheet.com/start/2f721cb1-6919-4c1e-9296-430f16be47e1" class="btn-book" data-i18n="btn-book" target="_blank" rel="noopener noreferrer">จองคิวหมอคนนี้</a>
         </div>
       </article>
       <article class="therapist">
         <img src="staff6.jpg" alt="ภาพหมอเมย์" />
         <div class="therapist-info">
-          <h3 data-i18n="therapist-may">เฮือนล้านนา</h3>
-          <a href="https://www.appsheet.com/newshortcut/...&therapist=เมย์" class="btn-book" data-i18n="btn-book">จองคิวหมอคนนี้</a>
+          <h3 data-i18n="therapist-may">หมอเมย์</h3>
+          <a href="https://www.appsheet.com/start/2f721cb1-6919-4c1e-9296-430f16be47e1" class="btn-book" data-i18n="btn-book" target="_blank" rel="noopener noreferrer">จองคิวหมอคนนี้</a>
         </div>
       </article>
     </section>
@@ -228,9 +239,9 @@
         "therapist-tarn": "หมอตาล",
         "therapist-noi": "หมอนุ้ย",
         "therapist-nai": "ครูนาย",
-        "therapist-fai": "หมอนิว",
-        "therapist-beam": "หมอน้ำ",
-        "therapist-may": "เฮือนล้านนา",
+        "therapist-fai": "หมอฝ้าย",
+        "therapist-beam": "หมอบีม",
+        "therapist-may": "หมอเมย์",
         "btn-book": "จองคิวหมอคนนี้"
       },
       en: {
@@ -241,9 +252,9 @@
         "therapist-tarn": "Dr. Tarn",
         "therapist-noi": "Dr. Noi",
         "therapist-nai": "Teacher Nai",
-        "therapist-fai": "Dr. New",
-        "therapist-beam": "Dr. Nam",
-        "therapist-may": "Huan Lanna",
+        "therapist-fai": "Dr. Fai",
+        "therapist-beam": "Dr. Beam",
+        "therapist-may": "Dr. May",
         "btn-book": "Book This Therapist"
       },
       zh: {
@@ -254,9 +265,9 @@
         "therapist-tarn": "塔医生",
         "therapist-noi": "诺医生",
         "therapist-nai": "奈老师",
-        "therapist-fai": "新医生",
-        "therapist-beam": "南医生",
-        "therapist-may": "兰纳之家",
+        "therapist-fai": "飞医生",
+        "therapist-beam": "比姆医生",
+        "therapist-may": "梅医生",
         "btn-book": "预约此按摩师"
       }
     };
