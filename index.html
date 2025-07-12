@@ -1,24 +1,23 @@
+
 <!DOCTYPE html>
 <html lang="th">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>เฮือนล้านนานวดเพื่อสุขภาพ</title>
-
+  <meta name="description" content="ร้านนวดเพื่อสุขภาพสไตล์ล้านนา ให้บริการด้วยใจ จังหวัดเชียงราย" />
+  <meta name="keywords" content="ร้านนวดเชียงราย, นวดแผนไทย, นวดล้านนา, นวดเพื่อสุขภาพ, แม่สาย" />
   <link href="https://fonts.googleapis.com/css2?family=Prompt&display=swap" rel="stylesheet" />
   <link rel="icon" href="favicon.png" type="image/png" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-
   <style>
     * { box-sizing: border-box; }
-    body, html {
+    html, body {
       margin: 0;
       padding: 0;
-      height: 100%;
       font-family: 'Prompt', sans-serif;
       background-color: #000;
       color: #f0c75e;
-      font-size: 16px;
     }
     main.card {
       max-width: 420px;
@@ -36,18 +35,21 @@
       height: 110px;
       border-radius: 50%;
       object-fit: cover;
-      margin: 0 auto 25px;
+      margin: 0 auto 10px;
       border: 2px solid #f0c75e;
       box-shadow: 0 0 12px #f0c75e88;
+    }
+    .brand-name {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: #f0c75e;
     }
     h1 {
       font-weight: 700;
       font-size: 1.6rem;
       margin-bottom: 12px;
       color: #f0c75e;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
     }
     p.subtitle {
       font-size: 1rem;
@@ -66,11 +68,12 @@
       border-radius: 40px;
       text-decoration: none;
       box-shadow: 0 6px 14px rgba(240,199,94,0.5);
-      transition: background 0.3s ease, box-shadow 0.3s ease;
+      transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
     }
     a.btn:hover {
       background: #d4af37;
       box-shadow: 0 8px 20px rgba(212,175,55,0.8);
+      transform: scale(1.03);
     }
     .contact-menu {
       margin-top: 35px;
@@ -113,15 +116,25 @@
       font-size: 0.95rem;
       color: #f7eac3;
     }
-
-    /* ปุ่มภาษา - มุมขวาบน */
+    .testimonials {
+      margin-top: 35px;
+      font-style: italic;
+      color: #fff8dc;
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+    footer {
+      margin-top: 40px;
+      text-align: center;
+      font-size: 0.8rem;
+      color: #ccc;
+      padding: 20px 0;
+    }
     .lang-switcher {
-      position: fixed;
-      top: 20px;
-      right: 20px;
       display: flex;
+      justify-content: center;
       gap: 8px;
-      z-index: 999;
+      margin-bottom: 20px;
     }
     .lang-switcher button {
       background: transparent;
@@ -138,7 +151,6 @@
       background: #f0c75e;
       color: #000;
     }
-
     .floating-call {
       position: fixed;
       bottom: 20px;
@@ -161,100 +173,68 @@
     .floating-call:hover {
       background: #d4af37;
     }
-
-    @media (max-width: 400px) {
-      main.card {
-        max-width: 95%;
-        padding: 20px 15px;
-      }
-      h1 {
-        font-size: 1.4rem;
-      }
-      a.btn {
-        font-size: 1rem;
-        padding: 12px;
-      }
-      .contact-menu a {
-        width: 44px;
-        height: 44px;
-        font-size: 20px;
-      }
-      .floating-call {
-        width: 50px;
-        height: 50px;
-        font-size: 24px;
-      }
-    }
   </style>
 </head>
 <body>
-
-  <!-- ปุ่มเปลี่ยนภาษา -->
-  <div class="lang-switcher">
-    <button onclick="switchLang('th')">ไทย</button>
-    <button onclick="switchLang('en')">English</button>
-    <button onclick="switchLang('zh')">中文</button>
-  </div>
-
   <main class="card">
-    <img src="logo.png" alt="โลโก้ร้านเฮือนลานนา" class="logo" loading="lazy" />
-    <h1 id="title">เฮือนล้านนานวดเพื่อสุขภาพ</h1>
+    <div class="lang-switcher">
+      <button onclick="switchLang('th')">ไทย</button>
+      <button onclick="switchLang('en')">English</button>
+      <button onclick="switchLang('zh')">中文</button>
+    </div>
+    <img src="logo.png" alt="โลโก้ร้านเฮือนลานนา" class="logo" />
+    <h1 class="brand-name" id="title">เฮือนล้านนานวดเพื่อสุขภาพ</h1>
     <p class="subtitle" id="subtitle">จองคิวออนไลน์ง่าย ๆ สะดวก รวดเร็ว และปลอดภัย<br>พร้อมดูแลคุณด้วยใจ</p>
-
-    <a href="massage-details.html" class="btn" id="btn-massage">รายการนวด</a>
-    <a href="therapists.html" class="btn" id="btn-therapist">พนักงาน (หมอนวด)</a>
-    <a href="https://www.appsheet.com/newshortcut/2f721cb1-6919-4c1e-9296-430f16be47e1" class="btn" target="_blank" id="btn-book">จองคิว</a>
-
+    <a href="massage-details.html" class="btn" id="btn-massage">ดูบริการนวด</a>
+    <a href="therapists.html" class="btn" id="btn-therapist">ทีมหมอนวด</a>
+    <a href="https://www.appsheet.com/newshortcut/2f721cb1-6919-4c1e-9296-430f16be47e1" class="btn" target="_blank" id="btn-book">จองเลย</a>
     <nav class="contact-menu" aria-label="เมนูติดต่อ">
       <a href="tel:+66919622999" title="โทรหาเรา"><i class="fas fa-phone"></i></a>
       <a href="https://lin.ee/izpBD5r" title="LINE Official" target="_blank"><i class="fab fa-line"></i></a>
-      <a href="https://www.facebook.com/share/18VRmDu1vS/?mibextid=wwXIfr" title="Facebook Page" target="_blank"><i class="fab fa-facebook-f"></i></a>
+      <a href="https://www.facebook.com/HuenLanna168" title="Facebook Page" target="_blank"><i class="fab fa-facebook-f"></i></a>
     </nav>
-
     <div class="map-container">
-      <iframe
-        src="https://www.google.com/maps?q=20.36781912601076,99.88924398221566&z=17&output=embed"
-        allowfullscreen
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade">
-      </iframe>
+      <iframe src="https://www.google.com/maps?q=20.36781912601076,99.88924398221566&z=17&output=embed" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
-
     <div class="address" id="address">
       168/2 หมู่ที่ 10 ต.โป่งผา อ.แม่สาย จ.เชียงราย 57130
     </div>
+    <div class="testimonials">
+      “บริการดีมาก ผ่อนคลายสุด ๆ” – ลูกค้าจากเชียงราย<br>
+      “หมอนวดมืออาชีพ แนะนำเลยค่ะ” – ลูกค้าจากกรุงเทพฯ
+    </div>
   </main>
-
+  <footer>
+    &copy; 2025 เฮือนล้านนานวดเพื่อสุขภาพ | All rights reserved
+  </footer>
   <a href="tel:+66919622999" class="floating-call" title="โทรด่วน"><i class="fas fa-phone"></i></a>
-
   <script>
     const content = {
       th: {
         title: "เฮือนล้านนานวดเพื่อสุขภาพ",
         subtitle: "จองคิวออนไลน์ง่าย ๆ สะดวก รวดเร็ว และปลอดภัย<br>พร้อมดูแลคุณด้วยใจ",
-        btnTherapist: "พนักงาน (หมอนวด)",
-        btnMassage: "รายการนวด",
-        btnBook: "จองคิว",
+        btnTherapist: "ทีมหมอนวด",
+        btnMassage: "ดูบริการนวด",
+        btnBook: "จองเลย",
         address: "168/2 หมู่ที่ 10 ต.โป่งผา อ.แม่สาย จ.เชียงราย 57130"
       },
       en: {
         title: "Huen Lanna Massage",
         subtitle: "Book online easily, quickly, and securely.<br>We care for you with heart.",
-        btnTherapist: "Therapists",
-        btnMassage: "Massage Services",
+        btnTherapist: "Our Therapists",
+        btnMassage: "View Massages",
         btnBook: "Book Now",
         address: "168/2 Moo 10, Pong Pha, Mae Sai, Chiang Rai 57130"
       },
       zh: {
         title: "兰纳传统按摩店",
         subtitle: "线上预约，方便快速又安全<br>我们用心为您服务",
-        btnTherapist: "按摩师",
-        btnMassage: "按摩项目",
+        btnTherapist: "我们的按摩师",
+        btnMassage: "查看项目",
         btnBook: "立即预约",
         address: "57130 泰国清莱府湄赛县蓬帕区10村168/2号"
       }
     };
-
     function switchLang(lang) {
       document.getElementById("title").innerHTML = content[lang].title;
       document.getElementById("subtitle").innerHTML = content[lang].subtitle;
@@ -264,6 +244,5 @@
       document.getElementById("address").innerText = content[lang].address;
     }
   </script>
-
 </body>
 </html>
