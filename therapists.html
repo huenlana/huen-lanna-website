@@ -4,63 +4,107 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>พนักงาน (หมอนวด) - ร้านนวดเฮือนลานนา</title>
-
+  <meta name="description" content="พบกับหมอนวดมืออาชีพของร้านนวดเฮือนลานนา พร้อมจองคิวง่ายๆ" />
+  <meta name="keywords" content="หมอนวด, นวดแผนไทย, เฮือนล้านนา, จองคิว" />
+  <meta name="author" content="HuenLana" />
   <link href="https://fonts.googleapis.com/css2?family=Prompt&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
   <style>
+    /* ===== Reset & Base ===== */
     * {
       box-sizing: border-box;
     }
     body, html {
-      margin: 0; padding: 0; min-height: 100vh;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
       font-family: 'Prompt', sans-serif;
-      background-color: #000;
-      color: #f0c75e;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      transition: background-color 0.3s ease, color 0.3s ease;
     }
 
+    /* ===== CSS Variables for Themes ===== */
+    :root {
+      --bg-color: #000;
+      --text-color: #f0c75e;
+      --card-bg: rgba(0, 0, 0, 0.85);
+      --border-color: #f0c75e;
+      --shadow-color: rgba(240, 199, 94, 0.6);
+      --btn-bg: #f0c75e;
+      --btn-hover-bg: #d4af37;
+      --btn-text-color: #000;
+      --btn-shadow: rgba(240, 199, 94, 0.6);
+      --desc-color: #f0c75ecc;
+      --input-bg: #222;
+      --input-text: #f0c75e;
+      --input-border: #d4af37;
+      --modal-bg: rgba(0,0,0,0.85);
+      --modal-content-bg: #111;
+      --review-bg: #222;
+    }
+    [data-theme="light"] {
+      --bg-color: #fafafa;
+      --text-color: #5c3a00;
+      --card-bg: #fff;
+      --border-color: #d4af37;
+      --shadow-color: rgba(212, 175, 55, 0.5);
+      --btn-bg: #d4af37;
+      --btn-hover-bg: #f0c75e;
+      --btn-text-color: #000;
+      --btn-shadow: rgba(212, 175, 55, 0.6);
+      --desc-color: #5c3a00cc;
+      --input-bg: #fff;
+      --input-text: #5c3a00;
+      --input-border: #d4af37;
+      --modal-bg: rgba(255,255,255,0.9);
+      --modal-content-bg: #fff;
+      --review-bg: #eee;
+    }
+
+    /* ===== Layout ===== */
     nav.main-nav {
       max-width: 480px;
       margin: 20px auto 0;
       display: flex;
       justify-content: center;
       gap: 20px;
+      flex-wrap: wrap;
     }
-
     nav.main-nav a {
-      color: black;
-      background-color: #f0c75e;
+      color: var(--btn-text-color);
+      background-color: var(--btn-bg);
       padding: 10px 20px;
       border-radius: 24px;
       text-decoration: none;
       font-weight: 600;
-      box-shadow: 0 4px 10px rgba(240,199,94,0.6);
+      box-shadow: 0 4px 10px var(--shadow-color);
       transition: background-color 0.3s ease;
     }
-
-    nav.main-nav a:hover {
-      background-color: #d4af37;
-    }
-
+    nav.main-nav a:hover,
     nav.main-nav a[aria-current="page"] {
-      background-color: #d4af37;
+      background-color: var(--btn-hover-bg);
     }
 
     main.card {
       max-width: 480px;
       width: 90%;
       margin: 20px auto 40px;
-      background: rgba(0, 0, 0, 0.85);
-      border: 2px solid #f0c75e;
+      background: var(--card-bg);
+      border: 2px solid var(--border-color);
       border-radius: 24px;
       padding: 30px 25px 25px 25px;
-      box-shadow: 0 8px 24px rgba(255,255,255,0.05);
+      box-shadow: 0 8px 24px rgba(255, 255, 255, 0.05);
       animation: fadeInUp 1s ease forwards;
       opacity: 0;
       transform: translateY(30px);
-      position: relative; /* เพื่อให้ .language-switcher ที่ absolute อยู่ภายในนี้ */
+      position: relative;
     }
-
     @keyframes fadeInUp {
       to {
         opacity: 1;
@@ -68,101 +112,332 @@
       }
     }
 
-    /* ปุ่มเปลี่ยนภาษา (ย้ายมุมขวาบน) */
-    .language-switcher {
-      position: absolute;
-      top: 20px;
-      right: 25px;
+    .header-flex {
       display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
       gap: 10px;
-      border: none;
-      background: transparent;
-      box-shadow: none;
-      padding: 0;
-      margin-bottom: 0;
-      z-index: 10;
     }
-    .language-switcher button {
-      background-color: #f0c75e;
-      border: none;
-      padding: 6px 16px;
-      border-radius: 20px;
-      font-weight: 700;
-      cursor: pointer;
-      color: #000;
-      box-shadow: 0 2px 8px rgba(240,199,94,0.8);
-      transition: color 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
-    }
-    .language-switcher button:hover,
-    .language-switcher button.active {
-      background-color: #d4af37;
-      color: #000;
-      box-shadow: 0 4px 14px rgba(212,175,55,1);
-    }
-
     h1 {
       font-weight: 700;
-      font-size: 2rem;
-      margin-bottom: 20px;
-      text-align: center;
-      color: #f0c75e;
+      font-size: 1.8rem;
+      margin: 0;
+      color: var(--btn-bg);
+      flex: 1;
+    }
+    .language-switcher {
+      background-color: var(--btn-bg);
+      padding: 4px 10px;
+      border-radius: 30px;
+      box-shadow: 0 4px 15px var(--shadow-color);
+      display: flex;
+      gap: 6px;
+      flex-shrink: 0;
+    }
+    .language-switcher button {
+      background-color: transparent;
+      border: none;
+      color: var(--btn-text-color);
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      font-family: 'Prompt', sans-serif;
+      font-size: 0.8rem;
+    }
+    .language-switcher button.active,
+    .language-switcher button:hover {
+      background-color: var(--btn-hover-bg);
+      color: var(--btn-text-color);
+      box-shadow: 0 2px 10px var(--shadow-color);
     }
 
+    /* ===== Filter ===== */
+    #search-container {
+      max-width: 480px;
+      margin: 0 auto 20px;
+      display: flex;
+      justify-content: center;
+    }
+    #search-input {
+      width: 90%;
+      max-width: 480px;
+      padding: 10px 15px;
+      font-size: 1rem;
+      border-radius: 24px;
+      border: 2px solid var(--input-border);
+      background-color: var(--input-bg);
+      color: var(--input-text);
+      outline: none;
+      transition: border-color 0.3s ease;
+      box-shadow: 0 0 5px var(--shadow-color);
+    }
+    #search-input::placeholder {
+      color: var(--input-text);
+      opacity: 0.7;
+    }
+    #search-input:focus {
+      border-color: var(--btn-hover-bg);
+      box-shadow: 0 0 12px var(--btn-hover-bg);
+    }
+
+    /* ===== Therapist list ===== */
     .therapist-list {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      display: flex;
+      flex-direction: column;
       gap: 20px;
-    }
-
-    @media (max-width: 480px) {
-      .therapist-list {
-        grid-template-columns: 1fr;
-      }
+      max-width: 480px;
+      margin: 0 auto;
     }
 
     .therapist {
-      background: #111;
-      border: 1px solid #f0c75e55;
+      display: flex;
+      background: var(--modal-content-bg);
+      border: 1px solid var(--border-color);
       border-radius: 16px;
-      padding: 20px;
-      text-align: center;
-      box-shadow: 0 2px 8px rgba(240,199,94,0.15);
+      padding: 15px 20px;
+      box-shadow: 0 2px 8px var(--shadow-color);
+      align-items: center;
+      gap: 20px;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+    }
+    .therapist:hover {
+      transform: scale(1.03);
+      box-shadow: 0 6px 18px var(--shadow-color);
     }
 
     .therapist img {
-      width: 100px;
-      height: 100px;
+      width: 110px;
+      height: 110px;
       border-radius: 50%;
       object-fit: cover;
-      box-shadow: 0 2px 6px rgba(240,199,94,0.4);
+      box-shadow: 0 2px 6px var(--shadow-color);
+      flex-shrink: 0;
+      user-select: none;
+      pointer-events: none;
     }
 
+    .therapist-info {
+      flex: 1;
+      color: var(--btn-bg);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
     .therapist-info h3 {
-      margin: 10px 0 4px;
-      color: #f0c75e;
+      margin: 0;
+      font-weight: 700;
+      font-size: 1.3rem;
+      color: var(--btn-bg);
     }
-
+    .stars {
+      color: var(--btn-bg);
+      font-size: 1.1rem;
+      user-select: none;
+      margin-bottom: 4px;
+    }
+    .therapist-info p {
+      font-size: 0.95rem;
+      line-height: 1.4;
+      margin: 0;
+      color: var(--desc-color);
+      min-height: 56px;
+    }
     .btn-book {
-      background: #f0c75e;
-      color: black;
+      background: var(--btn-bg);
+      color: var(--btn-text-color);
       font-weight: 700;
       padding: 10px 20px;
       border-radius: 40px;
       text-decoration: none;
-      display: inline-block;
       font-size: 1rem;
+      box-shadow: 0 4px 10px var(--btn-shadow);
+      align-self: flex-start;
       transition: background 0.3s ease;
-      box-shadow: 0 4px 10px rgba(240,199,94,0.6);
+      margin-top: 8px;
+      width: max-content;
+      user-select: none;
     }
-
     .btn-book:hover {
-      background: #d4af37;
+      background: var(--btn-hover-bg);
     }
 
-    @media (max-width: 400px) {
-      nav.main-nav {
-        flex-wrap: wrap;
+    /* ===== Contact Icons ===== */
+    .contact-icons {
+      margin-top: 8px;
+      display: flex;
+      gap: 12px;
+      font-size: 1.2rem;
+      color: var(--btn-bg);
+    }
+    .contact-icons a {
+      color: var(--btn-bg);
+      transition: color 0.3s ease;
+    }
+    .contact-icons a:hover {
+      color: var(--btn-hover-bg);
+    }
+
+    /* ===== Reviews Section ===== */
+    .review {
+      background: var(--review-bg);
+      border-radius: 12px;
+      padding: 10px 15px;
+      margin-top: 10px;
+      font-style: italic;
+      font-size: 0.9rem;
+      color: var(--desc-color);
+      box-shadow: inset 0 0 8px var(--shadow-color);
+    }
+
+    /* ===== Modal ===== */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      left: 0; top: 0;
+      width: 100vw; height: 100vh;
+      background-color: var(--modal-bg);
+      backdrop-filter: blur(5px);
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+    .modal.active {
+      display: flex;
+    }
+    .modal-content {
+      background: var(--modal-content-bg);
+      border-radius: 20px;
+      max-width: 420px;
+      width: 100%;
+      padding: 25px 20px;
+      color: var(--btn-bg);
+      position: relative;
+      box-shadow: 0 8px 24px var(--shadow-color);
+      max-height: 80vh;
+      overflow-y: auto;
+    }
+    .modal-close {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      font-size: 1.6rem;
+      cursor: pointer;
+      color: var(--btn-bg);
+      user-select: none;
+    }
+    .modal-content img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      display: block;
+      margin: 0 auto 20px auto;
+      box-shadow: 0 2px 6px var(--shadow-color);
+    }
+    .modal-content h2 {
+      margin-top: 0;
+      text-align: center;
+    }
+    .modal-content p {
+      font-size: 1rem;
+      line-height: 1.5;
+      color: var(--desc-color);
+      margin-bottom: 10px;
+    }
+    .modal-content .stars {
+      font-size: 1.4rem;
+      text-align: center;
+      margin-bottom: 15px;
+    }
+    .modal-content .contact-icons {
+      justify-content: center;
+      font-size: 1.4rem;
+    }
+    .modal-content .btn-book {
+      display: block;
+      margin: 20px auto 0 auto;
+      text-align: center;
+      width: fit-content;
+      padding: 12px 30px;
+      font-size: 1.1rem;
+    }
+
+    /* ===== Dark/Light toggle button ===== */
+    #theme-toggle {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: var(--btn-bg);
+      border: none;
+      padding: 10px 14px;
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: 0 4px 12px var(--shadow-color);
+      font-size: 1.2rem;
+      color: var(--btn-text-color);
+      transition: background-color 0.3s ease;
+      user-select: none;
+      z-index: 10000;
+    }
+    #theme-toggle:hover {
+      background-color: var(--btn-hover-bg);
+    }
+
+    /* ===== Responsive ===== */
+    @media (max-width: 480px) {
+      main.card {
+        width: 95%;
+        padding: 20px 15px 15px 15px;
+      }
+      .therapist {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+      .therapist img {
+        width: 90px;
+        height: 90px;
+      }
+      .therapist-info {
+        align-items: center;
+      }
+      .btn-book {
+        width: 100%;
+      }
+      .contact-icons {
+        justify-content: center;
+      }
+    }
+    @media (max-width: 360px) {
+      .header-flex {
+        flex-direction: column;
+        align-items: flex-start;
         gap: 10px;
+      }
+      h1 {
+        font-size: 1.4rem;
+        text-align: left;
+        width: 100%;
+      }
+      .language-switcher {
+        width: 100%;
+        justify-content: space-between;
+        padding: 6px 8px;
+        flex-wrap: wrap;
+        gap: 6px;
+      }
+      .language-switcher button {
+        flex: 1 1 30%;
+        font-size: 0.75rem;
+        padding: 6px 10px;
+        text-align: center;
       }
     }
   </style>
@@ -171,132 +446,399 @@
   <nav class="main-nav" aria-label="เมนูหลัก">
     <a href="index.html" data-i18n="nav-home">หน้าแรก</a>
     <a href="therapists.html" aria-current="page" data-i18n="nav-therapists">พนักงาน</a>
-    <a href="massage-details.html" data-i18n="nav-details">รายละเอียดการนวด</a>
+    <a href="details.html" data-i18n="nav-details">รายละเอียดการนวด</a>
   </nav>
 
-  <main class="card" role="main">
-    <div class="language-switcher" aria-label="เปลี่ยนภาษา">
-      <button data-lang="th" class="active">ไทย</button>
-      <button data-lang="en">EN</button>
-      <button data-lang="zh">中文</button>
+  <main class="card" role="main" aria-labelledby="page-title">
+    <div class="header-flex">
+      <h1 id="page-title" data-i18n="title">พนักงาน (หมอนวด)</h1>
+      <div class="language-switcher" role="group" aria-label="เลือกภาษา">
+        <button type="button" data-lang="th" aria-pressed="true" class="active">ไทย</button>
+        <button type="button" data-lang="en" aria-pressed="false">English</button>
+        <button type="button" data-lang="zh" aria-pressed="false">中文</button>
+      </div>
     </div>
-
-    <h1 data-i18n="title">พนักงาน (หมอนวด)</h1>
-
-    <section class="therapist-list" aria-label="รายการพนักงานหมอนวด">
-      <article class="therapist">
-        <img src="staff1.jpg" alt="ภาพหมอตาล" />
-        <div class="therapist-info">
-          <h3 data-i18n="therapist-tarn">หมอตาล</h3>
-          <a href="https://www.appsheet.com/start/2f721cb1-6919-4c1e-9296-430f16be47e1" class="btn-book" data-i18n="btn-book" target="_blank" rel="noopener noreferrer">จองคิวหมอคนนี้</a>
-        </div>
-      </article>
-      <article class="therapist">
-        <img src="staff2.jpg" alt="ภาพหมอนุ้ย" />
-        <div class="therapist-info">
-          <h3 data-i18n="therapist-noi">หมอนุ้ย</h3>
-          <a href="https://www.appsheet.com/start/2f721cb1-6919-4c1e-9296-430f16be47e1" class="btn-book" data-i18n="btn-book" target="_blank" rel="noopener noreferrer">จองคิวหมอคนนี้</a>
-        </div>
-      </article>
-      <article class="therapist">
-        <img src="staff3.jpg" alt="ภาพครูนาย" />
-        <div class="therapist-info">
-          <h3 data-i18n="therapist-nai">ครูนาย</h3>
-          <a href="https://www.appsheet.com/start/2f721cb1-6919-4c1e-9296-430f16be47e1" class="btn-book" data-i18n="btn-book" target="_blank" rel="noopener noreferrer">จองคิวหมอคนนี้</a>
-        </div>
-      </article>
-      <article class="therapist">
-        <img src="staff4.jpg" alt="ภาพหมอฝ้าย" />
-        <div class="therapist-info">
-          <h3 data-i18n="therapist-fai">หมอฝ้าย</h3>
-          <a href="https://www.appsheet.com/start/2f721cb1-6919-4c1e-9296-430f16be47e1" class="btn-book" data-i18n="btn-book" target="_blank" rel="noopener noreferrer">จองคิวหมอคนนี้</a>
-        </div>
-      </article>
-      <article class="therapist">
-        <img src="staff5.jpg" alt="ภาพหมอบีม" />
-        <div class="therapist-info">
-          <h3 data-i18n="therapist-beam">หมอบีม</h3>
-          <a href="https://www.appsheet.com/start/2f721cb1-6919-4c1e-9296-430f16be47e1" class="btn-book" data-i18n="btn-book" target="_blank" rel="noopener noreferrer">จองคิวหมอคนนี้</a>
-        </div>
-      </article>
-      <article class="therapist">
-        <img src="staff6.jpg" alt="ภาพหมอเมย์" />
-        <div class="therapist-info">
-          <h3 data-i18n="therapist-may">หมอเมย์</h3>
-          <a href="https://www.appsheet.com/start/2f721cb1-6919-4c1e-9296-430f16be47e1" class="btn-book" data-i18n="btn-book" target="_blank" rel="noopener noreferrer">จองคิวหมอคนนี้</a>
-        </div>
-      </article>
+    <div id="search-container">
+      <input
+        id="search-input"
+        type="search"
+        aria-label="ค้นหาชื่อหมอนวด"
+        placeholder="ค้นหาชื่อหมอนวด..."
+      />
+    </div>
+    <section id="therapist-list" class="therapist-list" aria-live="polite" aria-atomic="true">
+      <!-- รายการหมอนวดจะถูกแทรกที่นี่ -->
     </section>
   </main>
 
+  <!-- Modal รายละเอียดหมอนวด -->
+  <div id="modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-describedby="modal-desc">
+    <div class="modal-content">
+      <button class="modal-close" aria-label="ปิดหน้าต่าง">&times;</button>
+      <img id="modal-img" src="" alt="" />
+      <h2 id="modal-title"></h2>
+      <div id="modal-stars" class="stars"></div>
+      <div id="modal-desc"></div>
+      <div id="modal-contact" class="contact-icons"></div>
+      <a id="modal-book" href="#" target="_blank" rel="noopener noreferrer" class="btn-book">จองคิวหมอคนนี้</a>
+    </div>
+  </div>
+
+  <!-- Dark/Light Mode Toggle -->
+  <button id="theme-toggle" aria-pressed="false" aria-label="สลับธีมกลางวัน/กลางคืน">
+    <i class="fa-solid fa-moon"></i>
+  </button>
+
   <script>
+    // ข้อมูลหมอนวด (ตัวอย่าง)
+    const therapists = [
+      {
+        id: 'nai',
+        name: { th: 'ครูนาย', en: 'Kru Nai', zh: '老师奈' },
+        img: 'staff3.jpg',
+        alt: { th: 'ภาพครูนาย', en: 'Image of Kru Nai', zh: '老师奈的照片' },
+        stars: 5,
+        desc: {
+          th: 'นวดแผนไทย นวดน้ำมัน นวดคอ บ่า ไหล่ คลายเส้น',
+          en: 'Traditional Thai massage, oil massage, neck, shoulder relaxation',
+          zh: '传统泰式按摩，油按摩，颈部和肩部放松'
+        },
+        contact: {
+          line: 'https://line.me/ti/p/~krunai',
+          facebook: 'https://www.facebook.com/HuenLanna168'
+        },
+        bookingLink: 'https://www.appsheet.com/start/2f721cb1-6919-4c1e-9296-430f16be47e1',
+        reviews: [
+          { user: 'สมชาย', comment: 'นวดดีมาก มืออาชีพจริงๆ' },
+          { user: 'อารี', comment: 'บริการประทับใจ แนะนำเลยค่ะ' }
+        ]
+      },
+      {
+        id: 'tarn',
+        name: { th: 'หมอตาล', en: 'Mor Tarn', zh: '塔恩医生' },
+        img: 'staff1.jpg',
+        alt: { th: 'ภาพหมอตาล', en: 'Image of Mor Tarn', zh: '塔恩医生的照片' },
+        stars: 4,
+        desc: {
+          th: 'นวดแผนไทย นวดน้ำมัน นวดคอ บ่า ไหล่ คลายเส้น',
+          en: 'Traditional Thai massage, oil massage, neck, shoulder relaxation',
+          zh: '传统泰式按摩，油按摩，颈部和肩部放松'
+        },
+        contact: {
+          line: 'https://line.me/ti/p/~mortarn',
+          facebook: 'https://www.facebook.com/HuenLanna168'
+        },
+        bookingLink: 'https://www.appsheet.com/start/2f721cb1-6919-4c1e-9296-430f16be47e1',
+        reviews: [
+          { user: 'พงษ์', comment: 'หมอตาลนวดดีมากๆเลยค่ะ' }
+        ]
+      },
+      {
+        id: 'noi',
+        name: { th: 'หมอนุ้ย', en: 'Mor Nui', zh: '努伊医生' },
+        img: 'staff2.jpg',
+        alt: { th: 'ภาพหมอนุ้ย', en: 'Image of Mor Nui', zh: '努伊医生的照片' },
+        stars: 3,
+        desc: {
+          th: 'นวดแผนไทย นวดน้ำมัน นวดคอ บ่า ไหล่ คลายเส้น',
+          en: 'Traditional Thai massage, oil massage, neck, shoulder relaxation',
+          zh: '传统泰式按摩，油按摩，颈部和肩部放松'
+        },
+        contact: {
+          line: 'https://line.me/ti/p/~mornui',
+          facebook: 'https://www.facebook.com/HuenLanna168'
+        },
+        bookingLink: 'https://www.appsheet.com/start/2f721cb1-6919-4c1e-9296-430f16be47e1',
+        reviews: []
+      },
+      {
+        id: 'beam',
+        name: { th: 'หมอน้ำ', en: 'Mor Beam', zh: '水医生' },
+        img: 'staff5.jpg',
+        alt: { th: 'ภาพหมอน้ำ', en: 'Image of Mor Beam', zh: '水医生的照片' },
+        stars: 4,
+        desc: {
+          th: 'นวดแผนไทย นวดน้ำมัน นวดคอ บ่า ไหล่ คลายเส้น',
+          en: 'Traditional Thai massage, oil massage, neck, shoulder relaxation',
+          zh: '传统泰式按摩，油按摩，颈部和肩部放松'
+        },
+        contact: {
+          line: 'https://line.me/ti/p/~morbeam',
+          facebook: 'https://www.facebook.com/HuenLanna168'
+        },
+        bookingLink: 'https://www.appsheet.com/start/2f721cb1-6919-4c1e-9296-430f16be47e1',
+        reviews: []
+      },
+      {
+        id: 'fai',
+        name: { th: 'หมอนิว', en: 'Mor Fai', zh: '火医生' },
+        img: 'staff4.jpg',
+        alt: { th: 'ภาพหมอนิว', en: 'Image of Mor Fai', zh: '火医生的照片' },
+        stars: 3,
+        desc: {
+          th: 'นวดแผนไทย นวดน้ำมัน นวดคอ บ่า ไหล่ คลายเส้น',
+          en: 'Traditional Thai massage, oil massage, neck, shoulder relaxation',
+          zh: '传统泰式按摩，油按摩，颈部和肩部放松'
+        },
+        contact: {
+          line: 'https://line.me/ti/p/~morfai',
+          facebook: 'https://www.facebook.com/HuenLanna168'
+        },
+        bookingLink: 'https://www.appsheet.com/start/2f721cb1-6919-4c1e-9296-430f16be47e1',
+        reviews: []
+      },
+      {
+        id: 'huenlana',
+        name: { th: 'เฮือนล้านนา', en: 'Huen Lana', zh: '悬兰纳' },
+        img: 'staff6.jpg',
+        alt: { th: 'ภาพเฮือนล้านนา', en: 'Image of Huen Lana', zh: '悬兰纳照片' },
+        stars: 5,
+        desc: {
+          th: 'ประคบสมุนไพร (จองล่วงหน้า 3 วัน)',
+          en: 'Herbal compress (book 3 days in advance)',
+          zh: '草药包（提前3天预订）'
+        },
+        contact: {
+          line: 'https://line.me/ti/p/~huenlana',
+          facebook: 'https://www.facebook.com/HuenLanna168'
+        },
+        bookingLink: 'https://www.appsheet.com/start/2f721cb1-6919-4c1e-9296-430f16be47e1',
+        reviews: [
+          { user: 'ลูกค้า', comment: 'บริการดีมาก ประทับใจค่ะ' }
+        ]
+      }
+    ];
+
+    // ตัวแปรเก็บสถานะภาษาและธีม
+    let currentLang = 'th';
+    let currentTheme = 'dark';
+
+    // แสดงดาวแบบ Unicode ⭐
+    function renderStars(count) {
+      return '⭐'.repeat(count);
+    }
+
+    // สร้าง HTML รายการหมอนวด
+    function createTherapistCard(t) {
+      const div = document.createElement('article');
+      div.className = 'therapist';
+      div.setAttribute('tabindex', '0');
+      div.setAttribute('role', 'button');
+      div.setAttribute('aria-label', `${t.name[currentLang]}: ${t.desc[currentLang]}`);
+
+      div.innerHTML = `
+        <img src="${t.img}" alt="${t.alt[currentLang]}" loading="lazy" />
+        <div class="therapist-info">
+          <h3>${t.name[currentLang]}</h3>
+          <div class="stars" aria-label="ระดับดาว ${t.stars}">${renderStars(t.stars)}</div>
+          <p>${t.desc[currentLang]}</p>
+          <a href="${t.bookingLink}" target="_blank" rel="noopener noreferrer" class="btn-book" data-i18n="btn-book">${getTranslation('btn-book')}</a>
+          <div class="contact-icons" aria-label="ช่องทางติดต่อ ${t.name[currentLang]}">
+            <a href="${t.contact.line}" target="_blank" aria-label="LINE" rel="noopener noreferrer"><i class="fa-brands fa-line"></i></a>
+            <a href="${t.contact.facebook}" target="_blank" aria-label="Facebook" rel="noopener noreferrer"><i class="fa-brands fa-facebook"></i></a>
+          </div>
+        </div>
+      `;
+
+      div.addEventListener('click', () => openModal(t));
+      div.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          openModal(t);
+        }
+      });
+      return div;
+    }
+
+    // โหลดและแสดงรายการหมอนวด
+    function loadTherapists(filter = '') {
+      const list = document.getElementById('therapist-list');
+      list.innerHTML = '';
+      const filtered = therapists.filter(t =>
+        t.name[currentLang].toLowerCase().includes(filter.toLowerCase())
+      );
+      if (filtered.length === 0) {
+        const noResult = document.createElement('p');
+        noResult.textContent = getTranslation('no-results') || 'ไม่พบหมอนวดที่ค้นหา';
+        noResult.style.textAlign = 'center';
+        noResult.style.marginTop = '20px';
+        list.appendChild(noResult);
+        return;
+      }
+      filtered.forEach(t => {
+        list.appendChild(createTherapistCard(t));
+      });
+    }
+
+    // แปลภาษา
     const translations = {
       th: {
-        "nav-home": "หน้าแรก",
-        "nav-therapists": "พนักงาน",
-        "nav-details": "รายละเอียดการนวด",
-        "title": "พนักงาน (หมอนวด)",
-        "therapist-tarn": "หมอตาล",
-        "therapist-noi": "หมอนุ้ย",
-        "therapist-nai": "ครูนาย",
-        "therapist-fai": "หมอฝ้าย",
-        "therapist-beam": "หมอบีม",
-        "therapist-may": "หมอเมย์",
-        "btn-book": "จองคิวหมอคนนี้"
+        'nav-home': 'หน้าแรก',
+        'nav-therapists': 'พนักงาน',
+        'nav-details': 'รายละเอียดการนวด',
+        title: 'พนักงาน (หมอนวด)',
+        'btn-book': 'จองคิวหมอคนนี้',
+        'no-results': 'ไม่พบหมอนวดที่ค้นหา',
+        'modal-close': 'ปิดหน้าต่าง',
+        'search-placeholder': 'ค้นหาชื่อหมอนวด...'
       },
       en: {
-        "nav-home": "Home",
-        "nav-therapists": "Therapists",
-        "nav-details": "Massage Details",
-        "title": "Therapists",
-        "therapist-tarn": "Dr. Tarn",
-        "therapist-noi": "Dr. Noi",
-        "therapist-nai": "Teacher Nai",
-        "therapist-fai": "Dr. Fai",
-        "therapist-beam": "Dr. Beam",
-        "therapist-may": "Dr. May",
-        "btn-book": "Book This Therapist"
+        'nav-home': 'Home',
+        'nav-therapists': 'Therapists',
+        'nav-details': 'Massage Details',
+        title: 'Therapists',
+        'btn-book': 'Book this therapist',
+        'no-results': 'No therapists found',
+        'modal-close': 'Close window',
+        'search-placeholder': 'Search therapist name...'
       },
       zh: {
-        "nav-home": "首页",
-        "nav-therapists": "按摩师",
-        "nav-details": "按摩详情",
-        "title": "按摩师",
-        "therapist-tarn": "塔医生",
-        "therapist-noi": "诺医生",
-        "therapist-nai": "奈老师",
-        "therapist-fai": "飞医生",
-        "therapist-beam": "比姆医生",
-        "therapist-may": "梅医生",
-        "btn-book": "预约此按摩师"
+        'nav-home': '主页',
+        'nav-therapists': '员工',
+        'nav-details': '按摩详情',
+        title: '员工列表',
+        'btn-book': '预约此技师',
+        'no-results': '未找到技师',
+        'modal-close': '关闭窗口',
+        'search-placeholder': '搜索技师姓名...'
       }
     };
 
+    function getTranslation(key) {
+      return translations[currentLang] && translations[currentLang][key]
+        ? translations[currentLang][key]
+        : key;
+    }
+
+    // สลับภาษา
     function setLanguage(lang) {
+      currentLang = lang;
       document.documentElement.lang = lang;
+
+      // อัปเดต nav, title, ปุ่มจอง และ placeholder ช่องค้นหา
       document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
         if (translations[lang] && translations[lang][key]) {
           el.textContent = translations[lang][key];
         }
       });
-      // update active button style
+
+      // ปรับ aria-pressed ของปุ่มภาษา
       document.querySelectorAll('.language-switcher button').forEach(btn => {
-        btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+        const isActive = btn.getAttribute('data-lang') === lang;
+        btn.classList.toggle('active', isActive);
+        btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
       });
+
+      // อัปเดตรายการใหม่
+      loadTherapists(document.getElementById('search-input').value);
+
+      // อัปเดต alt รูปและ aria-label รายการ
+      document.querySelectorAll('.therapist img').forEach((img, i) => {
+        if (therapists[i]) {
+          img.alt = therapists[i].alt[lang];
+          img.parentElement.setAttribute('aria-label', `${therapists[i].name[lang]}: ${therapists[i].desc[lang]}`);
+        }
+      });
+
+      // อัปเดต placeholder input
+      document.getElementById('search-input').setAttribute('placeholder', getTranslation('search-placeholder'));
     }
 
+    // Modal logic
+    const modal = document.getElementById('modal');
+    const modalImg = document.getElementById('modal-img');
+    const modalTitle = document.getElementById('modal-title');
+    const modalStars = document.getElementById('modal-stars');
+    const modalDesc = document.getElementById('modal-desc');
+    const modalContact = document.getElementById('modal-contact');
+    const modalBook = document.getElementById('modal-book');
+    const modalCloseBtn = modal.querySelector('.modal-close');
+
+    function openModal(t) {
+      modalImg.src = t.img;
+      modalImg.alt = t.alt[currentLang];
+      modalTitle.textContent = t.name[currentLang];
+      modalStars.textContent = renderStars(t.stars);
+      modalStars.setAttribute('aria-label', `ระดับดาว ${t.stars}`);
+
+      let descHTML = `<p>${t.desc[currentLang]}</p>`;
+
+      // เพิ่มรีวิวถ้ามี
+      if (t.reviews && t.reviews.length) {
+        descHTML += t.reviews
+          .map(r => `<div class="review">"${r.comment}" — ${r.user}</div>`)
+          .join('');
+      }
+      modalDesc.innerHTML = descHTML;
+
+      modalContact.innerHTML = `
+        <a href="${t.contact.line}" target="_blank" aria-label="LINE" rel="noopener noreferrer"><i class="fa-brands fa-line"></i></a>
+        <a href="${t.contact.facebook}" target="_blank" aria-label="Facebook" rel="noopener noreferrer"><i class="fa-brands fa-facebook"></i></a>
+      `;
+
+      modalBook.href = t.bookingLink;
+      modalBook.textContent = getTranslation('btn-book');
+
+      modal.classList.add('active');
+      modalCloseBtn.focus();
+    }
+    function closeModal() {
+      modal.classList.remove('active');
+    }
+    modalCloseBtn.addEventListener('click', closeModal);
+    modal.addEventListener('click', e => {
+      if (e.target === modal) closeModal();
+    });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && modal.classList.contains('active')) {
+        closeModal();
+      }
+    });
+
+    // ฟิลเตอร์ค้นหา
+    const searchInput = document.getElementById('search-input');
+    searchInput.addEventListener('input', () => {
+      loadTherapists(searchInput.value);
+    });
+
+    // ภาษา ปุ่มเลือก
     document.querySelectorAll('.language-switcher button').forEach(btn => {
       btn.addEventListener('click', () => {
         setLanguage(btn.getAttribute('data-lang'));
       });
     });
 
+    // ธีมสลับ dark/light
+    const themeToggle = document.getElementById('theme-toggle');
+    function applyTheme(theme) {
+      if (theme === 'light') {
+        document.documentElement.setAttribute('data-theme', 'light');
+        themeToggle.innerHTML = '<i class="fa-solid fa-sun"></i>';
+        themeToggle.setAttribute('aria-pressed', 'true');
+      } else {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        themeToggle.innerHTML = '<i class="fa-solid fa-moon"></i>';
+        themeToggle.setAttribute('aria-pressed', 'false');
+      }
+      currentTheme = theme;
+      localStorage.setItem('theme', theme);
+    }
+    themeToggle.addEventListener('click', () => {
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      applyTheme(newTheme);
+    });
+
+    // โหลดธีมและภาษาเริ่มต้น
     window.addEventListener('load', () => {
-      setLanguage('th');
-      const mainCard = document.querySelector('main.card');
-      mainCard.style.opacity = '1';
-      mainCard.style.transform = 'translateY(0)';
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme) {
+        applyTheme(savedTheme);
+      } else {
+        applyTheme('dark');
+      }
+      setLanguage(currentLang);
+      loadTherapists();
     });
   </script>
 </body>
